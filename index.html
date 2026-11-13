@@ -170,13 +170,33 @@
     color: var(--muted);
     line-height: 1.8;
     max-width: 520px;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     opacity: 0;
     animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.58s forwards;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(34,197,94,0.7);
+    animation: pulse-line 2s ease infinite;
   }
   .hero-cta {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
     opacity: 0;
     animation: fadeUp 0.7s ease 0.65s forwards;
   }
@@ -392,6 +412,7 @@
     padding: 0.25rem 0.7rem;
     margin-bottom: 1.25rem;
     border-radius: 1px;
+    align-self: flex-start;
   }
   .chain-badge::before { content: '⬡'; font-size: 0.6rem; }
 
@@ -447,12 +468,21 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!--
+  TODO before publishing — replace these placeholders everywhere they appear:
+    YOUR_EMAIL@example.com        -> your real email address
+    YOUR-LINKEDIN-HANDLE          -> your LinkedIn profile slug
+    YOUR-X-HANDLE                 -> your X (Twitter) username
+    cv.pdf                        -> put your CV PDF next to this file with this name
+    Risk Scanner project link     -> add your repo URL in project 001 (or leave it off)
+-->
+
 <nav>
   <div class="nav-logo"><span>// </span>dev.portfolio</div>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="mailto:hello@yourdomain.com">Contact</a></li>
+    <li><a href="mailto:YOUR_EMAIL@example.com">Contact</a></li>
   </ul>
 </nav>
 
@@ -467,12 +497,17 @@
       <span class="line2">Ifeoluwa Joseph</span>
     </h1>
     <p class="hero-desc">
-      Building trustless infrastructure and scalable backend systems.<br>
-      Solidity · Rust · Node.js · DeFi · Zero-Knowledge Proofs.
+      Building secure smart contracts and the backend systems around them.<br>
+      Solidity · Foundry · Python · FastAPI · EVM.
     </p>
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      Open to remote roles · Based in Lagos, Nigeria
+    </div>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Work</a>
-      <a href="mailto:hello@yourdomain.com" class="btn-ghost">Get in Touch</a>
+      <a href="cv.pdf" class="btn-ghost" download>Download CV</a>
+      <a href="mailto:YOUR_EMAIL@example.com" class="btn-ghost">Get in Touch</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -526,8 +561,36 @@
   <div class="section-label reveal">Selected Work</div>
   <h2 class="section-title reveal">Projects</h2>
   <div class="projects-grid">
+
     <div class="project-card featured reveal">
       <div class="project-num">001</div>
+      <div class="chain-badge">EVM / Security tooling</div>
+      <div class="project-title">Smart Contract Risk Scanner</div>
+      <div class="project-desc">A web service that analyzes Solidity contracts with Slither, stores the findings in PostgreSQL, and presents them on a dashboard. Built end to end: the FastAPI backend, the database schema, the analysis pipeline, and the dashboard.</div>
+      <div class="project-meta">
+        <div class="project-stack">
+          <span class="stack-item">Python</span><span class="stack-item">FastAPI</span><span class="stack-item">Slither</span><span class="stack-item">PostgreSQL</span>
+        </div>
+        <!-- TODO: add your repo link here, e.g.
+        <a href="https://github.com/Ife04/YOUR_REPO" target="_blank" class="project-link">View</a> -->
+      </div>
+    </div>
+
+    <div class="project-card small reveal">
+      <div class="project-num">002</div>
+      <div class="chain-badge">Multi-chain</div>
+      <div class="project-title">NFTChecker</div>
+      <div class="project-desc">A multi-chain NFT portfolio viewer that brings a wallet's NFT holdings across several chains into one place.</div>
+      <div class="project-meta">
+        <div class="project-stack">
+          <span class="stack-item">Python</span><span class="stack-item">Web3</span>
+        </div>
+        <a href="https://github.com/Ife04/NftChecker" target="_blank" class="project-link">View</a>
+      </div>
+    </div>
+
+    <div class="project-card featured reveal">
+      <div class="project-num">003</div>
       <div class="chain-badge">Ethereum / Sepolia</div>
       <div class="project-title">Foundry Fund Me</div>
       <div class="project-desc">A decentralized crowdfunding smart contract built with Foundry. Users can fund the contract with ETH — with a minimum USD threshold enforced via a live Chainlink ETH/USD price feed. Only the contract owner can withdraw accumulated funds. Includes comprehensive unit tests, fork tests against Sepolia, gas snapshots, and deployment scripts for both local Anvil and live testnets.</div>
@@ -538,8 +601,9 @@
         <a href="https://github.com/Ife04/Foundry_Fund_Me" target="_blank" class="project-link">View</a>
       </div>
     </div>
+
     <div class="project-card small reveal">
-      <div class="project-num">002</div>
+      <div class="project-num">004</div>
       <div class="chain-badge">Solana / Xandeum</div>
       <div class="project-title">Xandeum pNode Dashboard</div>
       <div class="project-desc">A real-time monitoring dashboard for Xandeum pNodes — a decentralized storage network built on Solana. Tracks node health, uptime, performance metrics, and network status for operators across the distributed infrastructure.</div>
@@ -550,16 +614,17 @@
         <a href="https://github.com/Ife04/xandeum-pnode-dashboard" target="_blank" class="project-link">View</a>
       </div>
     </div>
+
   </div>
 </section>
 
 <footer>
   <div class="footer-left">Built by <span>Immanuel Ifeoluwa Joseph</span> · Smart Contract &amp; Backend Developer</div>
   <div class="footer-links">
-    <a href="https://github.com" target="_blank">GitHub</a>
-    <a href="https://twitter.com" target="_blank">Twitter</a>
-    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-    <a href="mailto:hello@yourdomain.com">Email</a>
+    <a href="https://github.com/Ife04" target="_blank">GitHub</a>
+    <a href="https://x.com/YOUR-X-HANDLE" target="_blank">X</a>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank">LinkedIn</a>
+    <a href="mailto:YOUR_EMAIL@example.com">Email</a>
   </div>
 </footer>
 
